@@ -1,0 +1,11 @@
+[
+  { "id": "white", "name": "White", "hex": "#FFFFFF" },
+  { "id": "cream", "name": "Cream", "hex": "#FDF3DC" },
+  { "id": "beige", "name": "Beige", "hex": "#E8DCC4" },
+  { "id": "grey", "name": "Light Grey", "hex": "#D9DDE2" },
+  { "id": "pink", "name": "Light Pink", "hex": "#F8CFCF" },
+  { "id": "blue", "name": "Light Blue", "hex": "#C6E7F5" },
+  { "id": "sage", "name": "Sage Green", "hex": "#B9C8A9" },
+  { "id": "peach", "name": "Peach", "hex": "#FFD9B3" },
+  { "id": "lavender", "name": "Lavender", "hex": "#DDD6F3" }
+]

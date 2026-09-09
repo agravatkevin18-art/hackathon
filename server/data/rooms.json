@@ -1,0 +1,42 @@
+[
+  {
+    "id": "bedroom",
+    "name": "Bedroom",
+    "description": "Cozy and calm personal retreat with bed, wardrobe and soft lighting.",
+    "icon": "🛏️",
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80",
+    "suggestedColors": ["Beige", "Light Pink", "Lavender", "Cream"]
+  },
+  {
+    "id": "living",
+    "name": "Living Room",
+    "description": "Spacious family gathering area with sofa, TV unit and warm lights.",
+    "icon": "🛋️",
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    "suggestedColors": ["Cream", "Beige", "Light Grey", "Sage Green"]
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen",
+    "description": "Modern modular kitchen with dining table and bright lighting.",
+    "icon": "🍳",
+    "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80",
+    "suggestedColors": ["White", "Cream", "Peach", "Light Blue"]
+  },
+  {
+    "id": "office",
+    "name": "Office",
+    "description": "Productive home office with table, chair and bookshelf.",
+    "icon": "💼",
+    "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80",
+    "suggestedColors": ["White", "Light Grey", "Light Blue", "Sage Green"]
+  },
+  {
+    "id": "bathroom",
+    "name": "Bathroom",
+    "description": "Clean and fresh bathroom with modern fittings and tiles.",
+    "icon": "🛁",
+    "image": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+    "suggestedColors": ["White", "Light Blue", "Light Grey", "Cream"]
+  }
+]

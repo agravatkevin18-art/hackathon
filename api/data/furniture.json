@@ -1,0 +1,10 @@
+[
+  { "id": "bed", "name": "Bed", "price": 25000, "icon": "🛏️", "description": "Queen size bed with storage", "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=60" },
+  { "id": "sofa", "name": "Sofa", "price": 30000, "icon": "🛋️", "description": "3-seater fabric sofa", "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=60" },
+  { "id": "wardrobe", "name": "Wardrobe", "price": 22000, "icon": "🚪", "description": "3-door wooden wardrobe", "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=60" },
+  { "id": "table", "name": "Table", "price": 8000, "icon": "🪑", "description": "Study / side table", "image": "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=600&q=60" },
+  { "id": "chair", "name": "Chair", "price": 4500, "icon": "💺", "description": "Ergonomic chair", "image": "https://images.unsplash.com/photo-1503602642458-232111445657?w=600&q=60" },
+  { "id": "tvunit", "name": "TV Unit", "price": 15000, "icon": "📺", "description": "Modern TV console", "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&q=60" },
+  { "id": "dining", "name": "Dining Table", "price": 28000, "icon": "🍽️", "description": "6-seater dining set", "image": "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=600&q=60" },
+  { "id": "bookshelf", "name": "Bookshelf", "price": 12000, "icon": "📚", "description": "5-shelf wooden bookshelf", "image": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=60" }
+]

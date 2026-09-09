@@ -1,0 +1,7 @@
+[
+  { "id": "ceiling", "name": "Ceiling Light", "price": 3500, "icon": "💡", "description": "Bright false-ceiling panel light" },
+  { "id": "wall", "name": "Wall Light", "price": 2200, "icon": "🔆", "description": "Decorative wall sconce (pair)" },
+  { "id": "pendant", "name": "Pendant Light", "price": 4800, "icon": "🔮", "description": "Modern hanging pendant" },
+  { "id": "led", "name": "LED Strip", "price": 1800, "icon": "✨", "description": "Warm LED strip 5m with remote" },
+  { "id": "floorlamp", "name": "Floor Lamp", "price": 5500, "icon": "🪔", "description": "Tall standing floor lamp" }
+]

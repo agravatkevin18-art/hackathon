@@ -1,0 +1,7 @@
+[
+  { "id": "wooden", "name": "Wooden Flooring", "pricePerSqFt": 250, "icon": "🪵", "description": "Premium laminate wooden finish", "color": "#b07d4f" },
+  { "id": "marble", "name": "Marble", "pricePerSqFt": 300, "icon": "⬜", "description": "Italian marble glossy finish", "color": "#e8e8e8" },
+  { "id": "ceramic", "name": "Ceramic Tiles", "pricePerSqFt": 120, "icon": "🟧", "description": "Durable ceramic tiles", "color": "#d9c7a7" },
+  { "id": "carpet", "name": "Carpet", "pricePerSqFt": 100, "icon": "🟫", "description": "Soft wall-to-wall carpet", "color": "#a0715a" },
+  { "id": "vinyl", "name": "Vinyl Flooring", "pricePerSqFt": 90, "icon": "🟨", "description": "Budget waterproof vinyl", "color": "#c9b896" }
+]
