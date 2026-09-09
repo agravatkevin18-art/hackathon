@@ -1,7 +1,6 @@
 {
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/api",
@@ -13,7 +12,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
