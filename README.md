@@ -90,6 +90,31 @@ Visit **`http://localhost:3000`** in your browser.
 
 ---
 
+## 🐍 Python Threat Detection API (`/backend`)
+
+A lightweight, purely on-device Flask backend providing offline threat scoring for URLs and messages:
+
+### Starting the Python Backend
+```bash
+# Setup virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+
+# Start backend server (binds to http://127.0.0.1:5000)
+python3 backend/app.py
+
+# Run backend unit tests (49 tests covering security, privacy, and detection)
+pytest -v backend/tests
+```
+
+### Endpoints
+- `GET  /api/health` — Health check & offline status verification
+- `POST /api/scan/url` — Analyzes URL structures, homoglyphs, and brand lookalikes
+- `POST /api/scan/message` — Evaluates SMS/email text for credential harvesting, coercion, and scams
+
+---
+
 ## 👥 Team Creative Criminals (ID: X8Y9)
 
 | Member | Role | Key Contributions |

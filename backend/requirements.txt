@@ -1,0 +1,7 @@
+# Sentinel AI - Backend Dependencies
+# PS-05 On-Device Threat, Phishing, and Scam Detection
+Flask>=3.0.0
+pytest>=8.0.0
+
+# Optional Local Machine Learning (Rule engine functions 100% offline without ML)
+# scikit-learn>=1.3.0

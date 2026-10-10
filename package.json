@@ -9,6 +9,8 @@
     "build": "npm --prefix client run build",
     "preview": "npm --prefix client run preview",
     "client:dev": "npm --prefix client run dev",
-    "client:build": "npm --prefix client run build"
+    "client:build": "npm --prefix client run build",
+    "backend:dev": "python3 backend/app.py",
+    "backend:test": "pytest backend/tests"
   }
 }
