@@ -1,18 +1,4 @@
+
 {
-  "buildCommand": "npm run build"
-  "outputDirectory": "client/dist",
-  "rewrites": [
-    {
-      "source": "/api",
-      "destination": "/api/index.js"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
