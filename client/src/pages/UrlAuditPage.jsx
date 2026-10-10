@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { auditURL, parseDomainParts, LEGITIMATE_PORTALS } from '../services/urlPhishingEngine.js';
+import { useThreat } from '../context/ThreatContext.jsx';
 
 const SAMPLE_URLS = [
+  { label: 'Legitimate: Official SBI Portal (.bank.in)', url: 'https://onlinesbi.sbi.bank.in/' },
+  { label: 'Legitimate: Official SBI Portal (.sbi)', url: 'https://onlinesbi.sbi' },
+  { label: 'Legitimate: Official HDFC Bank', url: 'https://hdfcbank.com' },
+  { label: 'Legitimate: National Cyber Crime Portal', url: 'https://cybercrime.gov.in' },
   { label: 'Phishing: Deceptive Subdomain SBI', url: 'http://onlinesbi.sbi.kyc-update.xyz/login' },
   { label: 'Phishing: Lookalike HDFC Domain', url: 'http://hdfc-verification-portal.top/netbanking' },
-  { label: 'Phishing: High Entropy Generated Domain', url: 'http://x9q28z1k-claim-reward.buzz/upi' },
-  { label: 'Legitimate: Official SBI Portal', url: 'https://onlinesbi.sbi' },
-  { label: 'Legitimate: Official HDFC Bank', url: 'https://hdfcbank.com' },
-  { label: 'Legitimate: National Cyber Crime Portal', url: 'https://cybercrime.gov.in' }
+  { label: 'Phishing: High Entropy Generated Domain', url: 'http://x9q28z1k-claim-reward.buzz/upi' }
 ];
 
 export default function UrlAuditPage() {
+  const { scanUrl } = useThreat();
   const [testUrl, setTestUrl] = useState(SAMPLE_URLS[0].url);
   const [auditResult, setAuditResult] = useState(() => auditURL(SAMPLE_URLS[0].url));
 
   const handleScan = (urlToScan = testUrl) => {
+    scanUrl(urlToScan);
     setAuditResult(auditURL(urlToScan));
   };
 
@@ -170,17 +174,39 @@ export default function UrlAuditPage() {
               )}
             </div>
 
-            {/* Typosquatting Match Card */}
-            {auditResult.closestMatch && (
+            {/* Legitimate Official Portal Card */}
+            {auditResult.isLegitimate && (
+              <div className="p-4 bg-emerald-950/40 rounded-2xl border border-emerald-800/80 space-y-2">
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                  <span>🛡️</span> Verified Legitimate Institution
+                </span>
+                <div className="flex flex-wrap items-center justify-between text-xs gap-2">
+                  <div>
+                    <strong className="text-white block text-sm">
+                      {auditResult.closestMatch?.name || 'Verified Official Portal'}
+                    </strong>
+                    <span className="text-zinc-400 font-mono text-[11px]">
+                      Registered Root: {auditResult.closestMatch?.domain || auditResult.hostname}
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg font-mono text-[10px] font-bold">
+                    100% TRUSTED ROOT
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Typosquatting Match Card (Only on Untrusted / Malicious Mimics) */}
+            {!auditResult.isLegitimate && auditResult.closestMatch && (
               <div className="p-4 bg-zinc-900 rounded-2xl border border-red-800/80 space-y-2">
                 <span className="text-xs font-bold text-red-400 uppercase tracking-wider block">
-                  Closest Official Banking Target:
+                  Closest Official Banking Target Mimicked:
                 </span>
                 <div className="flex flex-wrap items-center justify-between text-xs gap-2">
                   <div>
                     <strong className="text-white block">{auditResult.closestMatch.name}</strong>
                     <span className="text-zinc-400 font-mono text-[11px]">
-                      Real Domain: {auditResult.closestMatch.domain}
+                      Real Official Domain: {auditResult.closestMatch.domain}
                     </span>
                   </div>
                   <div className="text-right">

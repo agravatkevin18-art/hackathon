@@ -78,8 +78,11 @@ def extract_domain_parts(hostname: str) -> Tuple[str, List[str], str]:
 
     tld = parts[-1]
     
-    # Handle common two-part ccTLDs like .co.uk, .com.au, .gov.in
-    two_part_tlds = {"co.uk", "com.au", "gov.uk", "gov.in", "ac.uk", "org.uk", "co.jp", "com.br"}
+    # Handle common two-part ccTLDs like .co.uk, .com.au, .gov.in, .bank.in
+    two_part_tlds = {
+        "co.uk", "com.au", "gov.uk", "gov.in", "ac.uk", "org.uk", "co.jp", "com.br",
+        "bank.in", "nic.in", "mil.in", "edu.in", "ac.in", "co.in", "org.in", "net.in"
+    }
     if len(parts) >= 3 and f"{parts[-2]}.{parts[-1]}" in two_part_tlds:
         tld = f"{parts[-2]}.{parts[-1]}"
         main_domain = parts[-3]
@@ -428,11 +431,14 @@ def analyze_url(url: str) -> Dict[str, Any]:
                 )
             )
 
-    # Check if this hostname is an officially recognized brand domain
-    for brand, info in HIGH_TARGET_BRANDS.items():
-        if any(hostname_clean == off or hostname_clean.endswith("." + off) for off in info["official_domains"]):
-            context_modifiers["trusted_brand_domain"] = True
-            break
+    # Check if this hostname is a sovereign/regulated institutional domain or officially recognized brand domain
+    if tld in {"bank.in", "gov.in", "nic.in", "mil.in"}:
+        context_modifiers["trusted_brand_domain"] = True
+    else:
+        for brand, info in HIGH_TARGET_BRANDS.items():
+            if any(hostname_clean == off or hostname_clean.endswith("." + off) for off in info["official_domains"]):
+                context_modifiers["trusted_brand_domain"] = True
+                break
 
     # 10. Path & Query Inspections
     path_lower = path.lower()

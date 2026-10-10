@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import FloatingThreatHUD from './FloatingThreatHUD.jsx';
 import { evaluateThreatMultiVector } from '../services/compositeThreatScorer.js';
 import { HACKATHON_SCAM_SCENARIOS } from '../services/scamSamples.js';
+import { useThreat } from '../context/ThreatContext.jsx';
 
 export default function PhoneSimulator({ externalScenario = null }) {
+  const { scanMessage } = useThreat();
   const [currentScenario, setCurrentScenario] = useState(
     externalScenario || HACKATHON_SCAM_SCENARIOS[0]
   );
@@ -13,13 +15,11 @@ export default function PhoneSimulator({ externalScenario = null }) {
   // Analyze whenever scenario changes
   useEffect(() => {
     if (currentScenario) {
-      const res = evaluateThreatMultiVector({
-        messageText: currentScenario.text
-      });
+      const res = scanMessage(currentScenario.text);
       setAnalysisResult(res);
       setShowHUD(true);
     }
-  }, [currentScenario]);
+  }, [currentScenario, scanMessage]);
 
   // Handle external prop changes
   useEffect(() => {

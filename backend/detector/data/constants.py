@@ -139,6 +139,62 @@ HIGH_TARGET_BRANDS: Dict[str, Dict[str, List[str]]] = {
         "official_domains": ["metamask.io"],
         "keywords": ["metamask"],
     },
+    "sbi": {
+        "official_domains": ["onlinesbi.sbi", "sbi.co.in", "sbi.bank.in", "onlinesbi.com", "statebankofindia.com", "yono.sbi", "sbicard.com"],
+        "keywords": ["onlinesbi", "yono", "sbi-bank", "sbi-card"],
+    },
+    "hdfc": {
+        "official_domains": ["hdfcbank.com", "hdfcbank.bank.in", "hdfc.com"],
+        "keywords": ["hdfcbank", "hdfc-bank"],
+    },
+    "icici": {
+        "official_domains": ["icicibank.com", "icicibank.bank.in", "icicidirect.com"],
+        "keywords": ["icicibank", "icici-bank", "imobile"],
+    },
+    "axis": {
+        "official_domains": ["axisbank.com", "axisbank.bank.in"],
+        "keywords": ["axisbank", "axis-bank"],
+    },
+    "kotak": {
+        "official_domains": ["kotak.com", "kotak.bank.in"],
+        "keywords": ["kotakbank", "kotak-bank"],
+    },
+    "pnb": {
+        "official_domains": ["pnbindia.in", "pnb.bank.in"],
+        "keywords": ["pnbindia", "pnb-bank"],
+    },
+    "baroda": {
+        "official_domains": ["bankofbaroda.in", "bankofbaroda.bank.in"],
+        "keywords": ["bankofbaroda", "bob-bank"],
+    },
+    "phonepe": {
+        "official_domains": ["phonepe.com"],
+        "keywords": ["phonepe", "phone-pe"],
+    },
+    "paytm": {
+        "official_domains": ["paytm.com", "paytmbank.com"],
+        "keywords": ["paytm", "pay-tm"],
+    },
+    "npci": {
+        "official_domains": ["npci.org.in", "bhimupi.org.in", "upiqr.in"],
+        "keywords": ["npci", "bhim-upi"],
+    },
+    "incometax": {
+        "official_domains": ["incometax.gov.in"],
+        "keywords": ["incometax", "itr-refund"],
+    },
+    "uidai": {
+        "official_domains": ["uidai.gov.in"],
+        "keywords": ["uidai", "aadhaar"],
+    },
+    "irctc": {
+        "official_domains": ["irctc.co.in", "indianrail.gov.in"],
+        "keywords": ["irctc", "indianrail"],
+    },
+    "indiapost": {
+        "official_domains": ["indiapost.gov.in"],
+        "keywords": ["indiapost", "india-post"],
+    },
 }
 
 # Sensitive path components often seen in phishing kits

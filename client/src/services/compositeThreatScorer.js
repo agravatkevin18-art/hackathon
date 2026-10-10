@@ -1,6 +1,7 @@
 /**
- * Composite Threat Scorer Engine
+ * AegisEdge v3.0 — Composite Threat Scorer Engine
  * Computes multi-vector Threat Score (0 to 100) combining NLP, URL Heuristics & APK Privilege Audits.
+ * Calibrated for zero false alarms on verified applications and official banking communications.
  */
 
 import { analyzeMessageNLP } from './nlpThreatEngine.js';
@@ -15,7 +16,7 @@ export function evaluateThreatMultiVector({ messageText = '', urlString = '', ap
 
   // 2. Evaluate URL (check either explicit urlString or first extracted link from text)
   let targetUrl = urlString.trim();
-  if (!targetUrl && nlpResult.extractedLinks.length > 0) {
+  if (!targetUrl && nlpResult.extractedLinks && nlpResult.extractedLinks.length > 0) {
     targetUrl = nlpResult.extractedLinks[0];
   }
   const urlResult = auditURL(targetUrl);
@@ -41,6 +42,15 @@ export function evaluateThreatMultiVector({ messageText = '', urlString = '', ap
     compositeScore = nlpResult.score;
   }
 
+  // Precision Override: Officially verified packages or portals should never be penalized by heuristic noise
+  if (apkResult?.isVerifiedLegitimate) {
+    compositeScore = 0;
+  } else if (urlResult?.isLegitimate && nlpResult.score < 50) {
+    compositeScore = 0;
+  } else if (nlpResult.isAuthenticBankNotice && !urlResult.score) {
+    compositeScore = 0;
+  }
+
   const roundedScore = Math.min(100, Math.round(compositeScore));
 
   // Determine Overall Threat Tier
@@ -48,7 +58,19 @@ export function evaluateThreatMultiVector({ messageText = '', urlString = '', ap
   let badgeColor = 'emerald';
   let riskTitle = 'Verified Authentic / Low Risk';
 
-  if (roundedScore >= 70) {
+  if (apkResult?.isVerifiedLegitimate) {
+    verdict = 'SAFE';
+    badgeColor = 'emerald';
+    riskTitle = `Verified Authentic: ${apkResult.appName}`;
+  } else if (urlResult?.isLegitimate && roundedScore === 0) {
+    verdict = 'SAFE';
+    badgeColor = 'emerald';
+    riskTitle = `Verified Official Portal: ${urlResult.closestMatch?.name || urlResult.hostname}`;
+  } else if (nlpResult.isAuthenticBankNotice && roundedScore === 0) {
+    verdict = 'SAFE';
+    badgeColor = 'emerald';
+    riskTitle = 'Authentic Bank Transaction / Security Notice';
+  } else if (roundedScore >= 70) {
     verdict = 'CRITICAL';
     badgeColor = 'rose';
     riskTitle = 'High-Risk Cyber Threat Detected';
@@ -70,7 +92,7 @@ export function evaluateThreatMultiVector({ messageText = '', urlString = '', ap
     recommendations.push('Verify message sender identity directly through official channels.');
     recommendations.push('Examine the website domain spelling before entering login or UPI credentials.');
   } else {
-    recommendations.push('Message appears authentic. Standard security hygiene recommended.');
+    recommendations.push('Content verified authentic. No malicious indicators or deceptive spoofing detected.');
   }
 
   return {

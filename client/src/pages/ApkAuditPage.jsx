@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { SAMPLE_SCAM_APKS, auditAPK, PERMISSION_CATALOG } from '../services/apkAuditorEngine.js';
+import { useThreat } from '../context/ThreatContext.jsx';
 
 export default function ApkAuditPage() {
+  const { scanComposite } = useThreat();
   const [selectedApk, setSelectedApk] = useState(SAMPLE_SCAM_APKS[0]);
   const [auditResult, setAuditResult] = useState(() => auditAPK(SAMPLE_SCAM_APKS[0]));
 
   const handleSelect = (apk) => {
     setSelectedApk(apk);
-    setAuditResult(auditAPK(apk));
+    const res = auditAPK(apk);
+    setAuditResult(res);
+    scanComposite({ apkAudit: res, messageText: `APK Scan: ${apk.appName} (${apk.packageName})` });
   };
 
   return (
@@ -46,7 +50,7 @@ export default function ApkAuditPage() {
               >
                 <div>
                   <span className="text-xl block mb-1">
-                    {apk.id.includes('safe') ? '📱' : '⚠️'}
+                    {apk.id.includes('safe') || apk.id.includes('official') ? '🛡️' : '⚠️'}
                   </span>
                   <strong className="block text-xs font-bold truncate">{apk.appName}</strong>
                   <span className="text-[10px] text-zinc-500 font-mono block mt-0.5 truncate">
@@ -121,10 +125,19 @@ export default function ApkAuditPage() {
                   {auditResult.flags.map((flag, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 bg-red-950/50 border border-red-800 text-red-200 rounded-xl text-xs space-y-1"
+                      className={`p-3.5 rounded-xl text-xs space-y-1 border ${
+                        flag.severity === 'INFO' || flag.type === 'VERIFIED_OFFICIAL'
+                          ? 'bg-emerald-950/40 border-emerald-800 text-emerald-200'
+                          : flag.severity === 'CRITICAL'
+                          ? 'bg-red-950/50 border-red-800 text-red-200'
+                          : 'bg-amber-950/50 border-amber-800 text-amber-200'
+                      }`}
                     >
-                      <strong className="block font-bold text-red-400 text-[11px] uppercase">
-                        🚨 {flag.type}
+                      <strong className={`block font-bold text-[11px] uppercase flex items-center gap-1.5 ${
+                        flag.severity === 'INFO' || flag.type === 'VERIFIED_OFFICIAL' ? 'text-emerald-400' : 'text-red-400'
+                      }`}>
+                        <span>{flag.severity === 'INFO' || flag.type === 'VERIFIED_OFFICIAL' ? '🛡️' : '🚨'}</span>
+                        <span>{flag.type}</span>
                       </strong>
                       <p className="text-[11px] leading-relaxed">{flag.text}</p>
                     </div>
