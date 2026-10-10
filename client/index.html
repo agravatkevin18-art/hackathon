@@ -1,11 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interior Design Planner 🏠</title>
+    <title>AegisEdge • On-Device Threat, Phishing & Scam Detection (PS-05 | X8Y9)</title>
+    <!-- Tailwind CSS CDN for instant robust cybersecurity styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                dark: '#0B0B0E',
+                card: '#121217',
+                border: '#272730',
+                red: '#EF4444',
+                redDark: '#7F1D1D',
+                cyan: '#06B6D4',
+                green: '#10B981',
+                amber: '#F59E0B'
+              }
+            },
+            fontFamily: {
+              mono: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+              sans: ['Segoe UI', 'system-ui', '-apple-system', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+        50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.7); }
+      }
+      .threat-glow {
+        animation: pulseGlow 2s infinite;
+      }
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(1000%); }
+      }
+      .scanline-effect {
+        position: relative;
+        overflow: hidden;
+      }
+      .scanline-effect::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-[#0B0B0E] text-zinc-100 min-h-screen selection:bg-red-600 selection:text-white font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

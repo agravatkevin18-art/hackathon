@@ -1,13 +1,14 @@
 {
-  "name": "interior-design-planner",
-  "version": "1.0.0",
+  "name": "aegisedge-threat-detection",
+  "version": "3.0.0",
   "private": true,
-  "description": "Interior Design Planner - React, Vite, Node.js",
+  "description": "AegisEdge - On-Device Threat, Phishing and Scam Detection (Code Carnival 3.0 | PS-05 | Team Creative Criminals X8Y9)",
   "scripts": {
+    "start": "npm --prefix client run dev",
+    "dev": "npm --prefix client run dev",
     "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview",
     "client:dev": "npm --prefix client run dev",
-    "client:build": "npm --prefix client run build",
-    "server:start": "npm --prefix server start",
-    "install:all": "npm --prefix client install && npm --prefix server install"
+    "client:build": "npm --prefix client run build"
   }
 }
